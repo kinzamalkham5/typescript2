@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>JS Execution Context Visualizer</title>
+
+  
+</head>
+<style>
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: #0f172a;
+  color: #e2e8f0;
+  min-height: 100vh;
+}
+
+.container {
+  width: min(1000px, 92%);
+  margin: auto;
+  padding: 40px 0;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 35px;
+}
+
+header h1 {
+  font-size: 38px;
+  margin-bottom: 10px;
+}
+
+header p {
+  color: #94a3b8;
+}
+
+section {
+  margin-bottom: 25px;
+}
+
+.code-section,
+.environment,
+.tdz-box,
+.output,
+.phase {
+  background: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 12px;
+  padding: 22px;
+}
+
+h2 {
+  margin-bottom: 15px;
+}
+
+pre {
+  background: #020617;
+  padding: 20px;
+  border-radius: 8px;
+  overflow-x: auto;
+}
+
+code {
+  color: #a5f3fc;
+  line-height: 1.7;
+}
+
+.controls {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+button {
+  border: none;
+  padding: 12px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  background: #3b82f6;
+  color: white;
+  font-size: 15px;
+  transition: 0.2s;
+}
+
+button:hover {
+  transform: translateY(-2px);
+  opacity: 0.9;
+}
+
+#resetBtn {
+  background: #475569;
+}
+
+.phase p {
+  color: #cbd5e1;
+  line-height: 1.6;
+}
+
+.environments {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.variable {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #0f172a;
+  padding: 14px;
+  margin-top: 10px;
+  border-radius: 8px;
+}
+
+.variable strong {
+  color: #38bdf8;
+}
+
+.tdz-box {
+  border-left: 5px solid #f59e0b;
+}
+
+.tdz-box p {
+  color: #fbbf24;
+}
+
+.output {
+  border-left: 5px solid #22c55e;
+}
+
+#console {
+  background: #020617;
+  padding: 15px;
+  border-radius: 8px;
+  min-height: 60px;
+}
+
+#console p {
+  color: #86efac;
+  margin-bottom: 5px;
+}
+
+@media (max-width: 700px) {
+
+  .environments {
+    grid-template-columns: 1fr;
+  }
+
+  header h1 {
+    font-size: 28px;
+  }
+}
+
+
+</style>
+<body>
+
+  <div class="container">
+
+    <header>
+      <h1>JavaScript Execution Context</h1>
+      <p>
+        Creation Phase → Execution Phase → Hoisting → TDZ
+      </p>
+    </header>
+
+    <section class="code-section">
+
+      <h2>JavaScript Code</h2>
+
+      <pre><code id="code">
+console.log(a);
+
+var a = 10;
+
+let b = 20;
+
+const c = 30;
+
+function greet() {
+  console.log("Hello");
+}
+
+greet();
+      </code></pre>
+
+    </section>
+
+
+    <section class="controls">
+
+      <button id="creationBtn">
+        Creation Phase
+      </button>
+
+      <button id="executionBtn">
+        Execution Phase
+      </button>
+
+      <button id="resetBtn">
+        Reset
+      </button>
+
+    </section>
+
+
+    <section class="phase">
+
+      <h2 id="phaseTitle">
+        Click "Creation Phase"
+      </h2>
+
+      <p id="phaseDescription">
+        See what JavaScript prepares before executing the code.
+      </p>
+
+    </section>
+
+
+    <section class="environments">
+
+      <div class="environment variable-env">
+
+        <h2>Variable Environment</h2>
+
+        <div class="variable">
+          <span>var a</span>
+          <strong id="aValue">?</strong>
+        </div>
+
+        <div class="variable">
+          <span>function greet</span>
+          <strong id="greetValue">?</strong>
+        </div>
+
+      </div>
+
+
+      <div class="environment lexical-env">
+
+        <h2>Lexical Environment</h2>
+
+        <div class="variable">
+          <span>let b</span>
+          <strong id="bValue">?</strong>
+        </div>
+
+        <div class="variable">
+          <span>const c</span>
+          <strong id="cValue">?</strong>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <section class="tdz-box">
+
+      <h2>Temporal Dead Zone</h2>
+
+      <p id="tdzText">
+        b and c are waiting for initialization.
+      </p>
+
+    </section>
+
+
+    <section class="output">
+
+      <h2>Console Output</h2>
+
+      <div id="console">
+        <p>Waiting...</p>
+      </div>
+
+    </section>
+
+  </div>
+
+  <script src="./dist/execution.js"></script>
+
+</body>
+</html>

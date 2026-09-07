@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TypeScript Events & Storage</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <h1>TypeScript Events & Storage</h1>
+
+    <section>
+        <h2>Todo List</h2>
+
+        <form id="todoForm">
+            <input
+                type="text"
+                id="todoInput"
+                placeholder="Enter todo"
+            >
+
+            <button type="submit">Add Todo</button>
+        </form>
+
+        <ul id="todoList"></ul>
+    </section>
+
+    <section>
+        <h2>Event Bubbling</h2>
+
+        <div id="bubbleBox">
+            <button id="bubbleButton">
+                Click Button
+            </button>
+        </div>
+    </section>
+
+    <section>
+        <h2>Event Capturing</h2>
+
+        <div id="captureBox">
+            <button id="captureButton">
+                Click Button
+            </button>
+        </div>
+    </section>
+
+    <section>
+        <h2>Storage</h2>
+
+        <button id="saveLocal">
+            Save LocalStorage
+        </button>
+
+        <button id="readLocal">
+            Read LocalStorage
+        </button>
+
+        <button id="saveSession">
+            Save SessionStorage
+        </button>
+
+        <button id="readSession">
+            Read SessionStorage
+        </button>
+
+        <button id="saveCookie">
+            Save Cookie
+        </button>
+
+        <button id="readCookie">
+            Read Cookie
+        </button>
+
+        <p id="storageOutput"></p>
+    </section>
+
+    <section>
+        <h2>Fetch API</h2>
+
+        <button id="fetchTodos">
+            Fetch Todos
+        </button>
+
+        <div id="apiStatus"></div>
+    </section>
+
+    <script src="dist/event.js"></script>
+
+</body>
+</html>
